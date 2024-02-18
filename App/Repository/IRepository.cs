@@ -12,9 +12,10 @@ namespace Repository
 {
     public interface IRepository : Core.Repository.IRepository
     {
-        Object Get(string key);
+        Object Get(string sectionId, string key);
         Content GetAll();
-        void Add();
-        object Edit(string key, string section, string contentToSave);
+        void Save(Content content);
+        
+        Content GetContent();
     }
 }

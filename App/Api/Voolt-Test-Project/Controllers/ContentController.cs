@@ -9,22 +9,22 @@ namespace Voolt_Test_Project.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WebSiteHeaderController : Controller
+    public class ContentController : Controller
     {
-        private readonly IService webSiteHeaderService;
-        public WebSiteHeaderController(
+        private readonly IService service;
+        public ContentController(
             IService webSiteHeaderService
             )
         {
-            this.webSiteHeaderService = webSiteHeaderService;
+            this.service = webSiteHeaderService;
         }
 
-        [HttpGet("key")]
-        public async Task<IActionResult> Get(string key)
+        [HttpGet("GetBySectionAndKey")]
+        public async Task<IActionResult> Get([FromQuery] string sectionId, [FromQuery] string key)
         {
             try
             {
-                return Ok(this.webSiteHeaderService.Get(key));
+                return Ok(this.service.Get(sectionId, key));
 
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Voolt_Test_Project.Controllers
         {
             try
             {
-                return Ok(this.webSiteHeaderService.GetAll());
+                return Ok(this.service.GetAll());
 
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace Voolt_Test_Project.Controllers
         {
             try
             {
-                this.webSiteHeaderService.Add();
+                this.service.Add();
                 return Ok();
             }
             catch (Exception ex)
@@ -66,7 +66,21 @@ namespace Voolt_Test_Project.Controllers
         {
             try
             {                
-                return Ok(this.webSiteHeaderService.Edit(key, section, model));
+                return Ok(this.service.Edit(key, section, model));
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] string key, [FromQuery] string section)
+        {
+            try
+            {
+                this.service.Delete(key, section);
+                return Ok();
             }
             catch (Exception ex)
             {
