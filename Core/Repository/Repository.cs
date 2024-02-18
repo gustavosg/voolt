@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Core.Repository
 {
     public class Repository : IRepository
     {
@@ -15,14 +15,14 @@ namespace Repository
             storage = new JsonStorage();
         }
 
-        public async Task<string> Get()
+        public string GetJsonContent()
         {
-            return await storage.Read();
+            return storage.Read();
         }
 
-        public async Task Save(string content)
+        public void Save(string content)
         {
-            await storage.Save(content);
+            storage.Save(content);
         }
     }
 }

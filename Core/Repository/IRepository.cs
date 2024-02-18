@@ -1,4 +1,4 @@
-﻿namespace Repository
+﻿namespace Core.Repository
 {
     public interface IRepository
     {

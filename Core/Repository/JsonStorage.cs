@@ -4,30 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Core.Repository
 {
     public class JsonStorage
     {
-        private string jsonPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\Data\\File.json";
+        string jsonPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\File.json";
 
-        private void CheckFileExists()
+        public string Read()
         {
-            if (!File.Exists(jsonPath))
-                File.Create(jsonPath);
+            return File.ReadAllText(jsonPath);
         }
 
-        public async Task<string> Read()
+        public void Save(string content)
         {
-            CheckFileExists();
-
-            return await File.ReadAllTextAsync(jsonPath);
-        }
-
-        public async Task Save(string content)
-        {
-            CheckFileExists();
-
-            await File.WriteAllTextAsync(jsonPath, content);
+            File.WriteAllText(jsonPath, content);
         }
     }
 }

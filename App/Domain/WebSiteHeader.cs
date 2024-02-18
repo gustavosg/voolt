@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using Core.Domain;
+
+namespace Domain
 {
     public class WebSiteHeader : BaseEntity
     {
