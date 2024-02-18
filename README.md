@@ -45,7 +45,7 @@ This project uses a little of Dependency Injection, Repository and Service patte
 1. To Run the project, execute in the terminal: 
 
    ```bash
-   dotnet build
+   dotnet run --urls=http://localhost:5001/
    ```
 
 2. Open the Web Browser at http://localhost:5001/swagger/. It will open the Swagger Documentation.
