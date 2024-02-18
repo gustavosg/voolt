@@ -279,6 +279,9 @@ namespace Services
                     {
                         WebSiteHeader objDelete = content.WebSiteHeaders.FirstOrDefault(x => x.Id.Equals(key));
                         int index = content.WebSiteHeaders.IndexOf(objDelete);
+                        
+                        if (index < 0) throw new Exception("Not Found");
+
                         content.WebSiteHeaders.RemoveAt(index);
 
                         repository.Save(content);
@@ -288,6 +291,9 @@ namespace Services
                     {
                         WebSiteHero objDelete = content.WebSiteHeroes.FirstOrDefault(x => x.Id.Equals(key));
                         int index = content.WebSiteHeroes.IndexOf(objDelete);
+                        
+                        if (index < 0) throw new Exception("Not Found");
+
                         content.WebSiteHeroes.RemoveAt(index);
 
                         repository.Save(content);
@@ -298,6 +304,8 @@ namespace Services
                     {
                         Domain.Services objDelete = content.Services.FirstOrDefault(x => x.Id.Equals(key));
                         int index = content.Services.IndexOf(objDelete);
+
+                        if (index < 0) throw new Exception("Not Found");
 
                         content.Services.RemoveAt(index);
 
